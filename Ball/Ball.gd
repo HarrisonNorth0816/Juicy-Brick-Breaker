@@ -5,6 +5,7 @@ var max_speed = 600.0
 var speed_multiplier = 1.0
 var accelerate = false
 
+
 var released = true
 
 var initial_velocity = Vector2.ZERO

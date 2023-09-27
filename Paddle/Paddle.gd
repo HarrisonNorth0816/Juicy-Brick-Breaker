@@ -5,6 +5,8 @@ var speed = 10.0
 var width = 0
 var width_default = 0
 var decay = 0.02
+var EFFECT = preload("res://Effects/explosion.tscn")
+
 
 func _ready():
 	width = $CollisionShape2D.get_shape().size.x
@@ -22,6 +24,11 @@ func _input(event):
 		target.x += event.relative.x
 
 func hit(_ball):
+	$paddleHit.play()
+	var paddle = get_node_or_null("/root/Game/Paddle_Container/Paddle")
+	var effect = EFFECT.instantiate()
+	add_child(effect)
+	effect.global_position = Vector2(paddle.position.x, paddle.position.y - 30)
 	pass
 
 func powerup(payload):
@@ -29,3 +36,5 @@ func powerup(payload):
 		if c.type == payload.type:
 			c.queue_free()
 	$Powerups.call_deferred("add_child", payload)
+	
+

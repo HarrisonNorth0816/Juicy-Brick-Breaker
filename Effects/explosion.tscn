@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cufnxv6xyk1ei"]
+
+[ext_resource type="Script" path="res://Effects/explosion.gd" id="1_hw173"]
+
+[sub_resource type="Curve" id="Curve_6hkxj"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_x3m3l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4mxf3"]
+offsets = PackedFloat32Array(0, 0.0662252, 0.298013, 0.370861, 0.463576, 0.655629, 0.900662)
+colors = PackedColorArray(0, 0, 0, 1, 0.121569, 0.878431, 0.0352941, 1, 0.17531, 0.398283, 1, 1, 0, 0.492076, 0.456062, 1, 6.54578e-06, 0.659069, 0.865206, 1, 1, 1, 1, 1, 0.843847, 3.46541e-06, 0.512529, 1)
+
+[node name="explosion" type="CPUParticles2D"]
+amount = 50
+lifetime = 2.0
+emission_shape = 1
+emission_sphere_radius = 98.65
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = -195.85
+angular_velocity_max = 423.3
+angle_curve = SubResource("Curve_6hkxj")
+scale_amount_min = 8.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_x3m3l")
+color_ramp = SubResource("Gradient_4mxf3")
+script = ExtResource("1_hw173")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmwf8wjdir6y5"]
+[gd_scene load_steps=4 format=3 uid="uid://dmwf8wjdir6y5"]
 
 [ext_resource type="Script" path="res://Paddle/Paddle.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://bfb0it11gnu7y" path="res://Assets/paddleDing.wav" id="3_06ycc"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(100, 20)
@@ -19,3 +20,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("1")
 
 [node name="Powerups" type="Node2D" parent="."]
+
+[node name="paddleHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_06ycc")
+autoplay = true
