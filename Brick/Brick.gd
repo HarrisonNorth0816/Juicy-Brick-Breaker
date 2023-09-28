@@ -5,7 +5,7 @@ var new_position = Vector2.ZERO
 var dying = false
 
 
-var powerup_prob = 0.1
+var powerup_prob = 100.0
 
 func _ready():
 	randomize()
@@ -20,8 +20,9 @@ func hit(_ball):
 
 func die():
 	dying = true
+	var fish = get_node_or_null("/root/Game/Brick_Container/Brick")
 	collision_layer = 0
-	$ColorRect.hide()
+	fish.hide()
 	Global.update_score(score)
 	if not Global.feverish:
 		Global.update_fever(score)

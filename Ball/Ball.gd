@@ -49,9 +49,10 @@ func _integrate_forces(state):
 	if state.linear_velocity.length() > max_speed * speed_multiplier:
 		state.linear_velocity = state.linear_velocity.normalized() * max_speed * speed_multiplier
 
-func change_size(s):
-	$ColorRect.scale = s
-	$CollisionShape2D.scale = s
+func change_size(_s):
+	var ball = get_node_or_null("/root/Game/Ball_Container/Ball")
+	ball.scale.x = 2
+	ball.scale.y = 2
 
 func change_speed(s):
 	speed_multiplier = s
