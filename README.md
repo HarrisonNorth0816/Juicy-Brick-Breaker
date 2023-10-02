@@ -21,4 +21,6 @@ Ding sound: https://opengameart.org/content/dings, dklon
 
 ## Created by
 
+All music and art done by me
+
 Harrison North
