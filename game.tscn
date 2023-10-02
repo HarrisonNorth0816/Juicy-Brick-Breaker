@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd5m3yq1k5fx8"]
+[gd_scene load_steps=14 format=3 uid="uid://bd5m3yq1k5fx8"]
 
 [ext_resource type="Script" path="res://Brick/Brick_Container.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dmwf8wjdir6y5" path="res://Paddle/Paddle.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://l2avrqiy3efx" path="res://Paddle/Paddle.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cc6j5u2c6rk1m" path="res://Assets/background.png" id="2_y2p8t"]
 [ext_resource type="Script" path="res://Ball/Ball_Container.gd" id="3"]
 [ext_resource type="Script" path="res://Game.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://ci5q3vmuimsfr" path="res://UI/Pause_Menu.tscn" id="5"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://do7pdpjxteg8e" path="res://UI/HUD.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://r1nm10jeqyta" path="res://UI/Instructions.tscn" id="8"]
 [ext_resource type="Script" path="res://Effects/Fever.gd" id="9"]
+[ext_resource type="AudioStream" uid="uid://c2523de4l2djk" path="res://Assets/gameMusic (1).wav" id="11_322r5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(200, 1000)
@@ -19,12 +21,22 @@ size = Vector2(1224, 200)
 [node name="Game" type="Node2D"]
 script = ExtResource("4")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 800.0
+texture = ExtResource("2_y2p8t")
+
 [node name="Wall_Container" type="Node2D" parent="."]
 
 [node name="Wall_Left" type="StaticBody2D" parent="Wall_Container"]
 script = ExtResource("6")
 
 [node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Left"]
+offset_left = -190.0
+offset_top = -100.0
+offset_right = 10.0
+offset_bottom = 900.0
+color = Color(0.352941, 0.996078, 0.917647, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Left"]
 position = Vector2(-90, 400)
@@ -35,6 +47,11 @@ position = Vector2(1152, 2.08165e-12)
 script = ExtResource("6")
 
 [node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Right"]
+offset_left = -10.0
+offset_top = -100.0
+offset_right = 190.0
+offset_bottom = 900.0
+color = Color(0.352941, 0.996078, 0.917647, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Right"]
 position = Vector2(90, 400)
@@ -44,6 +61,11 @@ shape = SubResource("1")
 script = ExtResource("6")
 
 [node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Top"]
+offset_left = -100.0
+offset_top = -190.0
+offset_right = 1227.0
+offset_bottom = 10.0
+color = Color(0.352941, 0.996078, 0.917647, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Top"]
 position = Vector2(512, -90)
@@ -79,5 +101,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Instructions" parent="UI" instance=ExtResource("8")]
+
+[node name="gameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_322r5")
+autoplay = true
 
 [connection signal="timeout" from="Fever/Timer" to="Fever" method="_on_Timer_timeout"]
