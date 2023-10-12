@@ -39,21 +39,21 @@ func die():
 	tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "position", Vector2(position.x, 1000), time_fall).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "rotation", -PI + randf()*2*PI, time_rotate).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	#dying = true
-	#$CollisionShape2D.queue_free()
-	#Global.update_score(score)
-	#get_parent().check_level()
+	dying = true
+	$CollisionShape2D.queue_free()
+	Global.update_score(score)
+	get_parent().check_level()
 	#$Water.emitting = true
 	#if tween:
 #		tween.kill()
 	#tween = create_tween().set_parallel(true)
 	#tween.tween_property(self, "position", Vector2(position.x, 1000), time_fall).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	#tween.tween_property(self, "rotation", -PI + randf()*2*PI, time_rotate).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	#if randf() < powerup_prob:
-	#	var Powerup_Container = get_node_or_null("/root/Game/Powerup_Container")
-	#	if Powerup_Container != null:
-	#		var Powerup = load("res://Powerups/Powerup.tscn")
-	#		var powerup = Powerup.instantiate()
-		#	powerup.position = position
-		#	Powerup_Container.call_deferred("add_child", powerup)
+	if randf() < powerup_prob:
+		var Powerup_Container = get_node_or_null("/root/Game/Powerup_Container")
+		if Powerup_Container != null:
+			var Powerup = load("res://Powerups/Powerup.tscn")
+			var powerup = Powerup.instantiate()
+			powerup.position = position
+			Powerup_Container.call_deferred("add_child", powerup)
 	
