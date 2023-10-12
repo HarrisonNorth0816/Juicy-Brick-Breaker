@@ -1,15 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://dywcp8o4vsibs"]
 
-[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="1_6v2df"]
-[ext_resource type="Texture2D" uid="uid://h5cpxqyguiry" path="res://Assets/highlight.png" id="2_rju6c"]
+[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="1_smexh"]
+[ext_resource type="Texture2D" uid="uid://ck7le7un74kjr" path="res://Assets/highlight.png" id="2_710ml"]
 
 [node name="Indicator" type="Node2D"]
 
-[node name="Highlight" type="Sprite2D" parent="."]
-position = Vector2(19, 19)
-scale = Vector2(1.26667, 1.26667)
-texture = ExtResource("2_rju6c")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(19, 18)
-texture = ExtResource("1_6v2df")
+position = Vector2(5, 5)
+scale = Vector2(0.366667, 0.333333)
+texture = ExtResource("1_smexh")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+position = Vector2(5, 5)
+scale = Vector2(0.466667, 0.4)
+texture = ExtResource("2_710ml")

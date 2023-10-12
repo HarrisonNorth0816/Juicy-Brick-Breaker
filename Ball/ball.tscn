@@ -1,14 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr50duubwf50c"]
+[gd_scene load_steps=10 format=3 uid="uid://dr50duubwf50c"]
 
 [ext_resource type="Script" path="res://Ball/Ball.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="2_crb5y"]
+[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="2_r0u2v"]
+[ext_resource type="AudioStream" uid="uid://bvypdeykc2mlj" path="res://Assets/paddleDing.wav" id="2_xtulj"]
+[ext_resource type="Texture2D" uid="uid://ck7le7un74kjr" path="res://Assets/highlight.png" id="4_7b70h"]
 
 [sub_resource type="PhysicsMaterial" id="2"]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4h8bw"]
-radius = 19.105
+[sub_resource type="CircleShape2D" id="1"]
+radius = 15.0333
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a4wa8"]
+
+[sub_resource type="Curve" id="Curve_ocjpc"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gw4w5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497268, 0.515789), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Ball" type="RigidBody2D"]
 collision_layer = 0
@@ -16,14 +30,40 @@ physics_material_override = SubResource("2")
 gravity_scale = 0.0
 script = ExtResource("1")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-texture = ExtResource("2_crb5y")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4h8bw")
+shape = SubResource("1")
+
+[node name="Images" type="Node2D" parent="."]
+
+[node name="Ball" type="TextureRect" parent="Images"]
+offset_left = -15.0
+offset_top = -14.0
+offset_right = 15.0
+offset_bottom = 16.0
+texture = ExtResource("2_r0u2v")
+
+[node name="Highlight" type="Sprite2D" parent="Images"]
+texture = ExtResource("4_7b70h")
+
+[node name="Explosion" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_a4wa8")
+emitting = false
+amount = 50
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_curve = SubResource("Curve_ocjpc")
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_gw4w5")
+color = Color(0.345098, 0.247059, 0.0627451, 1)
+
+[node name="Ding" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xtulj")
 
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]

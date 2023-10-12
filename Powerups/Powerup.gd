@@ -17,7 +17,6 @@ func _ready():
 	payload = payloads[wrapi(randi(), 0, len(payloads))]
 
 func _physics_process(_delta):
-	rotate(.1)
 	position += velocity
 	velocity.y += grav_force
 	if position.y > Global.VP.y + 100:

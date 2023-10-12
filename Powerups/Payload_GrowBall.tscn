@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhvd2rew2o60s"]
+[gd_scene load_steps=2 format=3 uid="uid://c5dlf31kd362x"]
 
 [ext_resource type="Script" path="res://Powerups/Payload_GrowBall.gd" id="1"]
 

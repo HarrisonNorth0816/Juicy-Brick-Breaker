@@ -1,48 +1,48 @@
 [gd_scene load_steps=6 format=3 uid="uid://bjvdmnbj44w6x"]
 
 [ext_resource type="Script" path="res://Brick/Brick.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://ckwkddib51c2g" path="res://Assets/facf0eda7b950507da5ff9b1d220dd43.png" id="2_5q7fx"]
+[ext_resource type="Texture2D" uid="uid://c5vquttuyj6gq" path="res://Assets/gary.png" id="2_nhakh"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7xl0w"]
+[sub_resource type="Curve" id="Curve_yb8h2"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0218579, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="Curve" id="Curve_ykuqp"]
-max_value = 2.0
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_wjxat"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(83, 37)
+size = Vector2(28.0364, 14.3826)
 
 [node name="Brick" type="StaticBody2D"]
+scale = Vector2(2.21141, 2.08586)
 script = ExtResource("1")
 
 [node name="Water" type="CPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_7xl0w")
-scale = Vector2(5, 5)
 emitting = false
-amount = 50
-lifetime = 2.0
-one_shot = true
+amount = 40
+explosiveness = 1.0
 randomness = 1.0
-lifetime_randomness = 1.0
 emission_shape = 1
-emission_sphere_radius = 5.0
+emission_sphere_radius = 13.93
 spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 40.0
-initial_velocity_max = 50.0
-scale_amount_min = 8.0
-scale_amount_max = 8.0
-scale_amount_curve = SubResource("Curve_ykuqp")
-color = Color(0, 0.360784, 1, 0.694118)
+gravity = Vector2(0, 30)
+angle_curve = SubResource("Curve_yb8h2")
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_wjxat")
+color = Color(0, 0.105882, 1, 1)
 
-[node name="Fish" type="TextureRect" parent="."]
-offset_left = -45.0
-offset_top = -15.0
-offset_right = -5.0
-offset_bottom = 25.0
-texture = ExtResource("2_5q7fx")
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -14.0182
+offset_top = -7.6707
+offset_right = 288.982
+offset_bottom = 22.3293
+scale = Vector2(0.1, 0.5)
+texture = ExtResource("2_nhakh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 5.5)
+position = Vector2(0.452201, -0.479419)
 shape = SubResource("1")

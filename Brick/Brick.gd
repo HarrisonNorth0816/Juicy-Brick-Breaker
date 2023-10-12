@@ -11,7 +11,7 @@ var time_s = 1.0
 var time_v = 1.0
 var tween
 
-var powerup_prob = 100.0
+var powerup_prob = 80
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -21,8 +21,7 @@ func _ready():
 	tween.tween_property(self, "position", new_position, 0.5 + randf()*2).set_trans(Tween.TRANS_BOUNCE)
 
 func _physics_process(_delta):
-	#if dying:
-	if dying and not $Water.emitting and not tween:
+	if dying and not $Water.emitting:
 		queue_free()
 
 func hit(_ball):
@@ -39,10 +38,10 @@ func die():
 	tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "position", Vector2(position.x, 1000), time_fall).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "rotation", -PI + randf()*2*PI, time_rotate).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	dying = true
-	$CollisionShape2D.queue_free()
-	Global.update_score(score)
-	get_parent().check_level()
+	#dying = true
+	#$CollisionShape2D.queue_free()
+	#Global.update_score(score)
+	#get_parent().check_level()
 	#$Water.emitting = true
 	#if tween:
 #		tween.kill()
@@ -56,4 +55,15 @@ func die():
 			var powerup = Powerup.instantiate()
 			powerup.position = position
 			Powerup_Container.call_deferred("add_child", powerup)
-	
+
+#func die():
+#	dying = true
+#	$CollisionShape2D.queue_free()
+#	Global.update_score(score)
+#	get_parent().check_level()
+#	$Water.emitting = true
+#	if tween:
+#		tween.kill()
+#	tween = create_tween().set_parallel(true)
+#	tween.tween_property(self, "position", Vector2(position.x, 1000), time_fall).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+#	tween.tween_property(self, "rotation", -PI + randf()*2*PI, time_rotate).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)

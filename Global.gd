@@ -6,7 +6,7 @@ var score = 0
 var lives = 0
 var time = 0
 var fever = 0
-var fever_multiplier = 0.15
+var fever_multiplier = .15
 var starting_in = 0
 
 var fever_decay = 0.1
